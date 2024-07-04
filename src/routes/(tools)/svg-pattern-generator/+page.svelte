@@ -1,7 +1,7 @@
 <script>
 	import { writable } from 'svelte/store';
 
-	const patternTypes = ['Circle', 'Square', 'Triangle', 'Hexagon', 'Right triangle', 'Half circle', 'Dots'];
+	const patternTypes = ['Circle', 'Square', 'Triangle', 'Right triangle', 'Half circle', 'Dots'];
 
 	let selectedPatternType = patternTypes[0];
 	let patternColor = '#47d3ff';
@@ -25,10 +25,18 @@
 <div class="card gap-16 items-center mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 overflow-hidden rounded-lg"></div>
 
 <style>
+	.pattern-container { 
+     overflow: hidden; 
+    } 
 	.pattern {
-		background-color: var(--patternColor);
 		opacity: var(--opacity);
-		transform: rotate(var(--rotation)deg) skew(var(--skew)deg);
+		transform: rotate(var(--rotation)) skew(var(--skew));
+	}
+
+	.Circle, .Square, .Dots {
+	  background-color: var(--patternColor);
+	  width: var(--size);
+	  height: var(--size);
 	}
 
 	.Circle {
@@ -46,7 +54,6 @@
 		border-left: calc(var(--size) / 2) solid transparent;
 		border-right: calc(var(--size) / 2) solid transparent;
 		border-bottom: var(--size) solid var(--patternColor);
-		background: none;
 	}
 
 	.RightTriangle {
@@ -54,7 +61,6 @@
 		height: 0;
 		border-top: var(--size) solid var(--patternColor);
 		border-left: var(--size) solid transparent;
-		background: none;
 	}
 
 	.HalfCircle {
@@ -66,6 +72,9 @@
 
 	.Dots {
 	  border-radius: 50%;
+	  background-color: var(--patternColor);
+	  width: var(--size);
+	  height: var(--size);
     
 	}
 
@@ -75,7 +84,9 @@
 </style>
 
 <main class="container mx-auto p-4">
-	<h1 class="text-2xl font-bold mb-4 text-center">SVG Pattern Generator</h1>
+
+		<h1 class="text-2xl font-bold mb-4 text-center">SVG Pattern Generator</h1>
+	
 
 	<div class="flex flex-col space-y-4">
 		<div>
@@ -132,11 +143,12 @@
 	<div class="pattern-container mt-4" style="background-color: {backgroundColor}; display: grid; grid-template-columns: repeat(auto-fill, minmax({size + spacing}px, 1fr)); gap: {spacing}px;">
 		{#each Array(50) as _, i}
 		   <div class="pattern {selectedPatternType}" style="
-		       width: {size}px;
-		       height: {size}px;
-		       background-color: {patternColor};
-		       opacity: {opacity};
-		       transform: rotate({rotation}deg) skew({skew}deg);">
+		       --patternColor: {patternColor};
+               --opacity: {opacity};
+               --rotation: {rotation}deg;
+               --skew: {skew}deg;
+               --size: {size}px;">
+		      
 	        </div>		
 		{/each}
 	</div>
