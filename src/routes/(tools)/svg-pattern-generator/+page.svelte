@@ -5,7 +5,7 @@
 
 	let selectedPatternType = patternTypes[0];
 	let patternColor = '#47d3ff';
-	let backgroundColor = '#474bff';
+	let backgroundColor = '#0e0606';
 
 	let size = 32;
 	let spacing = 30;
