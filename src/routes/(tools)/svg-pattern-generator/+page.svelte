@@ -1,7 +1,7 @@
 <script>
 	import { writable } from 'svelte/store';
 
-	const patternTypes = ['Circle', 'Square', 'Triangle', 'Right triangle', 'Half circle', 'Dots'];
+	const patternTypes = ['Circle', 'Square', 'Triangle', 'Ring', 'Dots'];
 
 	let selectedPatternType = patternTypes[0];
 	let patternColor = '#47d3ff';
@@ -56,25 +56,22 @@
 		border-bottom: var(--size) solid var(--patternColor);
 	}
 
-	.RightTriangle {
-		width: 0;
-		height: 0;
-		border-top: var(--size) solid var(--patternColor);
-		border-left: var(--size) solid transparent;
-	}
-
-	.HalfCircle {
-		border-radius: 50% 50% 0 0;
-		width: var(--size);
-        height: calc(var(--size) / 2);
-        background-color: var(--patternColor);
+	.Ring {
+       width: var(--size);
+       height: var(--size);
+       border: calc(var(--size) / 5) solid var(--patternColor);
+       border-radius: 50%;
+       background: transparent;
 	}
 
 	.Dots {
-	  border-radius: 50%;
-	  background-color: var(--patternColor);
-	  width: var(--size);
-	  height: var(--size);
+		background-color: var(--patternColor);
+		width: var(--size);
+		height: var(--size);
+		border-radius: 75%;
+		box-shadow: calc(var(--size) + var(--spacing)) 0 0 0 var(--patternColor), 
+					0 calc(var(--size) + var(--spacing)) 0 0 var(--patternColor),
+					calc(var(--size) + var(--spacing)) calc(var(--size) + var(--spacing)) 0 0 var(--patternColor);
     
 	}
 
@@ -147,7 +144,8 @@
                --opacity: {opacity};
                --rotation: {rotation}deg;
                --skew: {skew}deg;
-               --size: {size}px;">
+               --size: {size}px;
+			   --spacing: {spacing}px;">
 		      
 	        </div>		
 		{/each}
