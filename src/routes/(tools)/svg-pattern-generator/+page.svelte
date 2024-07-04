@@ -27,13 +27,15 @@
 <style>
 	.pattern-container { 
      overflow: hidden; 
-    } 
+
+	} 
+
 	.pattern {
 		opacity: var(--opacity);
 		transform: rotate(var(--rotation)) skew(var(--skew));
 	}
 
-	.Circle, .Square, .Dots {
+	.Circle, .Square {
 	  background-color: var(--patternColor);
 	  width: var(--size);
 	  height: var(--size);
@@ -137,8 +139,8 @@
 		</div>
 	</div>
 
-	<div class="pattern-container mt-4" style="background-color: {backgroundColor}; display: grid; grid-template-columns: repeat(auto-fill, minmax({size + spacing}px, 1fr)); gap: {spacing}px;">
-		{#each Array(50) as _, i}
+	<div class="pattern-container mt-4" style="background-color: {backgroundColor};display: grid; grid-template-columns: repeat(auto-fill, minmax({size + spacing}px, 1fr)); gap: {spacing}px;">
+		{#each Array(96) as _, i}
 		   <div class="pattern {selectedPatternType}" style="
 		       --patternColor: {patternColor};
                --opacity: {opacity};
@@ -146,7 +148,6 @@
                --skew: {skew}deg;
                --size: {size}px;
 			   --spacing: {spacing}px;">
-		      
 	        </div>		
 		{/each}
 	</div>
