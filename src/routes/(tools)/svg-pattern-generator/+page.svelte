@@ -108,7 +108,7 @@
 
 	<div class="flex flex-col space-y-4">
 		<div>
-			<label for="patternType" class="font-bold">Pattern Type</label>
+			<label for="patternType" class="font-bold dark:text-white">Pattern Type</label>
 			<select id="patternType" bind:value={selectedPatternType} class="w-full mt-1 p-2 border rounded font-bold">
 				{#each patternTypes as type}
 					<option value={type}>{type}</option>
@@ -118,41 +118,41 @@
 
 		<div class="flex space-x-4">
 			<div>
-				<label for="patternColor" class="font-bold">Pattern Color</label>
+				<label for="patternColor" class="font-bold dark:text-white">Pattern Color</label>
 				<input type="color" id="patternColor" bind:value={patternColor} class="w-full mt-1 p-2 border rounded">
 				<input type="text" bind:value={patternColor} class="w-full mt-1 p-2 border rounded">
 			</div>
 			<div>
-				<label for="backgroundColor" class="font-bold">Background Color</label>
+				<label for="backgroundColor" class="font-bold dark:text-white">Background Color</label>
 				<input type="color" id="backgroundColor" bind:value={backgroundColor} class="w-full mt-1 p-2 border rounded">
 				<input type="text" bind:value={backgroundColor} class="w-full mt-1 p-2 border rounded">
 			</div>
 		</div>
 
 		<div class="flex items-center justify-between">
-			<h2 class="font-bold">Pattern Settings</h2>
-			<button on:click={resetSettings} class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 font-bold">Reset</button>
+			<h2 class="font-bold dark:text-white">Pattern Settings</h2>
+			<button on:click={resetSettings} class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 font-bold ">Reset</button>
 		</div>
 
 		<div class="flex flex-col space-y-2">
 			<div>
-				<label for="size" class="font-bold">Size: {size}px</label>
+				<label for="size" class="font-bold dark:text-white">Size: {size}px</label>
 				<input type="range" id="size" min="1" max="100" bind:value={size} class="w-full">
 			</div>
 			<div>
-				<label for="spacing" class="font-bold">Spacing: {spacing}px</label>
+				<label for="spacing" class="font-bold dark:text-white">Spacing: {spacing}px</label>
 				<input type="range" id="spacing" min="1" max="100" bind:value={spacing} class="w-full">
 			</div>
 			<div>
-				<label for="rotation" class="font-bold">Rotation: {rotation}deg</label>
+				<label for="rotation" class="font-bold dark:text-white">Rotation: {rotation}deg</label>
 				<input type="range" id="rotation" min="0" max="360" bind:value={rotation} class="w-full">
 			</div>
 			<div>
-				<label for="skew" class="font-bold">Skew: {skew}deg</label>
+				<label for="skew" class="font-bold dark:text-white">Skew: {skew}deg</label>
 				<input type="range" id="skew" min="0" max="360" bind:value={skew} class="w-full">
 			</div>
 			<div>
-				<label for="opacity" class="font-bold">Pattern Opacity: {opacity}</label>
+				<label for="opacity" class="font-bold dark:text-white">Pattern Opacity: {opacity}</label>
 				<input type="range" id="opacity" min="0" max="1" step="0.1" bind:value={opacity} class="w-full">
 			</div>
 		</div>
