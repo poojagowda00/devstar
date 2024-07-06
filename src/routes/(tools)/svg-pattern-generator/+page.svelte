@@ -18,13 +18,14 @@
 		spacing = 30;
 		rotation = 0;
 		skew = 0;
-		opacity = 1;
+		opacity = 1;	
 	};
 </script>
 
 <div class="card gap-16 items-center mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 overflow-hidden rounded-lg"></div>
 
 <style>
+
 	.pattern-container { 
      overflow: hidden; 
 
@@ -73,41 +74,12 @@
 	    border-radius: calc(var(--size) / 2) calc(var(--size) / 2) 0 0;
 	}	
 
-	.Fungi {
-	    position: relative;
-	    width: var(--size);
-	    height: var(--size);
-	}
-
-	.Fungi::before {
-	    content: '';
-	    position: absolute;
-	    top: 0;
-	    left: 50%;
-	    transform: translateX(-50%);
-	    width: 100%;
-	    height: 50%;
-	    background-color: var(--patternColor);
-	    border-radius: 50% 50% 0 0;
-	}
-
-	.Fungi::after {
-	    content: '';
-	    position: absolute;
-	    bottom: 0;
-	    left: 50%;
-	    transform: translateX(-50%);
-	    width: 30%;
-	    height: 50%;
-	    background-color: var(--patternColor);
-	}
-
 	.Minus {
       width: var(--size);
       height: 2px;
       background-color: var(--patternColor);
     }
-  
+
 	.Dots {
 		background-color: var(--patternColor);
 		width: var(--size);
