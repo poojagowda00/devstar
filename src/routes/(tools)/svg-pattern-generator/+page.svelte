@@ -1,7 +1,7 @@
 <script>
 	import { writable } from 'svelte/store';
 
-	const patternTypes = ['Circle', 'Square', 'Triangle', 'Ring', 'HalfCircle', 'Fungi', 'Minus', 'Dots'];
+	const patternTypes = ['Circle', 'Square', 'Triangle', 'Ring', 'HalfCircle', 'Minus', 'Dots'];
 
 	let selectedPatternType = patternTypes[0];
 	let patternColor = '#47d3ff';
