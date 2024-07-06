@@ -1,11 +1,11 @@
 <script>
 	import { writable } from 'svelte/store';
 
-	const patternTypes = ['Circle', 'Square', 'Triangle', 'Right triangle', 'Half circle', 'Dots'];
+	const patternTypes = ['Circle', 'Square', 'Triangle', 'Ring', 'HalfCircle', 'Minus', 'Dots'];
 
 	let selectedPatternType = patternTypes[0];
 	let patternColor = '#47d3ff';
-	let backgroundColor = '#474bff';
+	let backgroundColor = '#0e0606';
 
 	let size = 32;
 	let spacing = 30;
@@ -18,22 +18,25 @@
 		spacing = 30;
 		rotation = 0;
 		skew = 0;
-		opacity = 1;
+		opacity = 1;	
 	};
 </script>
 
 <div class="card gap-16 items-center mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 overflow-hidden rounded-lg"></div>
 
 <style>
+
 	.pattern-container { 
      overflow: hidden; 
-    } 
+
+	} 
+
 	.pattern {
 		opacity: var(--opacity);
 		transform: rotate(var(--rotation)) skew(var(--skew));
 	}
 
-	.Circle, .Square, .Dots {
+	.Circle, .Square {
 	  background-color: var(--patternColor);
 	  width: var(--size);
 	  height: var(--size);
@@ -56,41 +59,56 @@
 		border-bottom: var(--size) solid var(--patternColor);
 	}
 
-	.RightTriangle {
-		width: 0;
-		height: 0;
-		border-top: var(--size) solid var(--patternColor);
-		border-left: var(--size) solid transparent;
+	.Ring {
+       width: var(--size);
+       height: var(--size);
+       border: calc(var(--size) / 5) solid var(--patternColor);
+       border-radius: 50%;
+       background: transparent;
 	}
 
 	.HalfCircle {
-		border-radius: 50% 50% 0 0;
-		width: var(--size);
-        height: calc(var(--size) / 2);
-        background-color: var(--patternColor);
-	}
+	    width: var(--size);
+	    height: calc(var(--size) / 2);
+	    background-color: var(--patternColor);
+	    border-radius: calc(var(--size) / 2) calc(var(--size) / 2) 0 0;
+	}	
+
+	.Minus {
+      width: var(--size);
+      height: 2px;
+      background-color: var(--patternColor);
+    }
 
 	.Dots {
-	  border-radius: 50%;
-	  background-color: var(--patternColor);
-	  width: var(--size);
-	  height: var(--size);
+		background-color: var(--patternColor);
+		width: var(--size);
+		height: var(--size);
+		border-radius: 75%;
+		box-shadow: calc(var(--size) + var(--spacing)) 0 0 0 var(--patternColor), 
+					0 calc(var(--size) + var(--spacing)) 0 0 var(--patternColor),
+					calc(var(--size) + var(--spacing)) calc(var(--size) + var(--spacing)) 0 0 var(--patternColor);
     
 	}
 
-	h1 {
-		color: blue;
-	}
+	.highlight-svg {
+      color: red;
+    }
+
+    .pattern-generator {
+      color: #47ff91;
+    }
 </style>
 
 <main class="container mx-auto p-4">
 
-		<h1 class="text-2xl font-bold mb-4 text-center">SVG Pattern Generator</h1>
+		<h1 class="text-2xl font-bold mb-4 text-center">
+			<span class="highlight-svg">SVG</span> <span class="pattern-generator">Pattern Generator</span></h1>
 	
 
 	<div class="flex flex-col space-y-4">
 		<div>
-			<label for="patternType" class="font-bold">Pattern Type</label>
+			<label for="patternType" class="font-bold dark:text-white">Pattern Type</label>
 			<select id="patternType" bind:value={selectedPatternType} class="w-full mt-1 p-2 border rounded font-bold">
 				{#each patternTypes as type}
 					<option value={type}>{type}</option>
@@ -100,55 +118,55 @@
 
 		<div class="flex space-x-4">
 			<div>
-				<label for="patternColor" class="font-bold">Pattern Color</label>
+				<label for="patternColor" class="font-bold dark:text-white">Pattern Color</label>
 				<input type="color" id="patternColor" bind:value={patternColor} class="w-full mt-1 p-2 border rounded">
 				<input type="text" bind:value={patternColor} class="w-full mt-1 p-2 border rounded">
 			</div>
 			<div>
-				<label for="backgroundColor" class="font-bold">Background Color</label>
+				<label for="backgroundColor" class="font-bold dark:text-white">Background Color</label>
 				<input type="color" id="backgroundColor" bind:value={backgroundColor} class="w-full mt-1 p-2 border rounded">
 				<input type="text" bind:value={backgroundColor} class="w-full mt-1 p-2 border rounded">
 			</div>
 		</div>
 
 		<div class="flex items-center justify-between">
-			<h2 class="font-bold">Pattern Settings</h2>
-			<button on:click={resetSettings} class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 font-bold">Reset</button>
+			<h2 class="font-bold dark:text-white">Pattern Settings</h2>
+			<button on:click={resetSettings} class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 font-bold ">Reset</button>
 		</div>
 
 		<div class="flex flex-col space-y-2">
 			<div>
-				<label for="size" class="font-bold">Size: {size}px</label>
+				<label for="size" class="font-bold dark:text-white">Size: {size}px</label>
 				<input type="range" id="size" min="1" max="100" bind:value={size} class="w-full">
 			</div>
 			<div>
-				<label for="spacing" class="font-bold">Spacing: {spacing}px</label>
+				<label for="spacing" class="font-bold dark:text-white">Spacing: {spacing}px</label>
 				<input type="range" id="spacing" min="1" max="100" bind:value={spacing} class="w-full">
 			</div>
 			<div>
-				<label for="rotation" class="font-bold">Rotation: {rotation}deg</label>
+				<label for="rotation" class="font-bold dark:text-white">Rotation: {rotation}deg</label>
 				<input type="range" id="rotation" min="0" max="360" bind:value={rotation} class="w-full">
 			</div>
 			<div>
-				<label for="skew" class="font-bold">Skew: {skew}deg</label>
+				<label for="skew" class="font-bold dark:text-white">Skew: {skew}deg</label>
 				<input type="range" id="skew" min="0" max="360" bind:value={skew} class="w-full">
 			</div>
 			<div>
-				<label for="opacity" class="font-bold">Pattern Opacity: {opacity}</label>
+				<label for="opacity" class="font-bold dark:text-white">Pattern Opacity: {opacity}</label>
 				<input type="range" id="opacity" min="0" max="1" step="0.1" bind:value={opacity} class="w-full">
 			</div>
 		</div>
 	</div>
 
-	<div class="pattern-container mt-4" style="background-color: {backgroundColor}; display: grid; grid-template-columns: repeat(auto-fill, minmax({size + spacing}px, 1fr)); gap: {spacing}px;">
-		{#each Array(50) as _, i}
+	<div class="pattern-container mt-4" style="background-color: {backgroundColor};display: grid; grid-template-columns: repeat(auto-fill, minmax({size + spacing}px, 1fr)); gap: {spacing}px;">
+		{#each Array(96) as _, i}
 		   <div class="pattern {selectedPatternType}" style="
 		       --patternColor: {patternColor};
                --opacity: {opacity};
                --rotation: {rotation}deg;
                --skew: {skew}deg;
-               --size: {size}px;">
-		      
+               --size: {size}px;
+			   --spacing: {spacing}px;">
 	        </div>		
 		{/each}
 	</div>
