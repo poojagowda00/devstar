@@ -1,7 +1,7 @@
 <script>
 	import { writable } from 'svelte/store';
 
-	const patternTypes = ['Circle', 'Square', 'Triangle', 'Ring', 'Dots'];
+	const patternTypes = ['Circle', 'Square', 'Triangle', 'Ring', 'HalfCircle', 'Fungi', 'Minus', 'Dots'];
 
 	let selectedPatternType = patternTypes[0];
 	let patternColor = '#47d3ff';
@@ -66,6 +66,48 @@
        background: transparent;
 	}
 
+	.HalfCircle {
+	    width: var(--size);
+	    height: calc(var(--size) / 2);
+	    background-color: var(--patternColor);
+	    border-radius: calc(var(--size) / 2) calc(var(--size) / 2) 0 0;
+	}	
+
+	.Fungi {
+	    position: relative;
+	    width: var(--size);
+	    height: var(--size);
+	}
+
+	.Fungi::before {
+	    content: '';
+	    position: absolute;
+	    top: 0;
+	    left: 50%;
+	    transform: translateX(-50%);
+	    width: 100%;
+	    height: 50%;
+	    background-color: var(--patternColor);
+	    border-radius: 50% 50% 0 0;
+	}
+
+	.Fungi::after {
+	    content: '';
+	    position: absolute;
+	    bottom: 0;
+	    left: 50%;
+	    transform: translateX(-50%);
+	    width: 30%;
+	    height: 50%;
+	    background-color: var(--patternColor);
+	}
+
+	.Minus {
+      width: var(--size);
+      height: 2px;
+      background-color: var(--patternColor);
+    }
+  
 	.Dots {
 		background-color: var(--patternColor);
 		width: var(--size);
@@ -77,14 +119,19 @@
     
 	}
 
-	h1 {
-		color: blue;
-	}
+	.highlight-svg {
+      color: blue;
+    }
+
+    .pattern-generator {
+      color: #47d3ff;
+    }
 </style>
 
 <main class="container mx-auto p-4">
 
-		<h1 class="text-2xl font-bold mb-4 text-center">SVG Pattern Generator</h1>
+		<h1 class="text-2xl font-bold mb-4 text-center">
+			<span class="highlight-svg">SVG</span> <span class="pattern-generator">Pattern Generator</span></h1>
 	
 
 	<div class="flex flex-col space-y-4">
